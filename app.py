@@ -1,9 +1,10 @@
-import requests
+from selenium import webdriver
 
 from pages.quotes_page import QuotesPage
 
-page_content = requests.get('http://quotes.toscrape.com').content
-page = QuotesPage(page_content)
+chrome = webdriver.Chrome(executable_path="/home/disciple/chromedriver")
+chrome.get("http://quotes.toscrape.com")
+page = QuotesPage(chrome)
 
 for quote in page.quotes:
-    print(quote.content)
+    print(quote)
